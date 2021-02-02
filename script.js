@@ -2,16 +2,18 @@
 // console.log(`hello World`);
 
 // GRABBING ALL THE ELEMENTS FROM APP...
-let chancesLeft = 5;
+let chancesLeft = 10;
 const againBtn = document.querySelector(".again");
 const checkScore = document.querySelector(".check");
 // const randomNumber = document.querySelector("number");
-let score = document.querySelector(".chances-left");
+// let score = document.querySelector(".chances-left");
 let message = document.querySelector(".message");
-let highScore = document.querySelector(".label-highscore");
+// let highScore = document.querySelector(".label-highscore");
 let guess = document.querySelector(".guess");
 let randomNumber = Math.trunc(Math.random() * 20) + 1;
 let userGuesses = document.querySelector(".user-guesses");
+let highScore = 0;
+
 // ADDING RANDOM NUMBER TO DOM..
 
 console.log(randomNumber);
@@ -40,7 +42,7 @@ againBtn.addEventListener("click", playAgain);
 // PLAY AGAIN FUNCTION
 function playAgain() {
 	document.body.style.backgroundColor = "#222";
-	chancesLeft = 5;
+	chancesLeft = 10;
 	userGuesses.textContent = "";
 	document.querySelector(".chances").textContent = chancesLeft;
 	message.textContent = "start guessesing...";
@@ -56,6 +58,10 @@ function playAgain() {
 function winner() {
 	document.body.style.backgroundColor = "green";
 	message.textContent = `You Won the Game..`;
+	if (chancesLeft > highScore) {
+		highScore = chancesLeft;
+		document.querySelector(".highscore").textContent = highScore;
+	}
 	gameReset();
 }
 
